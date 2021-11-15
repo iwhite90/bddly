@@ -78,7 +78,7 @@ And for the final piece of boilerplate, add calls to the Jest afterEach and afte
     });
 
     afterAll(() => {
-        suiteFinished(expect.getState().testPath, expect.getState().currentTestName, __filename);
+        suiteFinished(expect.getState().currentTestName, __filename);
     });
 ```
 
@@ -262,7 +262,7 @@ describe('Nest app:', () => {
     });
 
     afterAll(async () => {
-        suiteFinished(expect.getState().testPath, expect.getState().currentTestName, __filename);
+        suiteFinished(expect.getState().currentTestName, __filename);
         await prisma.$disconnect();
         await app.close();
     });
