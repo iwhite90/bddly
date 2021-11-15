@@ -1,6 +1,7 @@
 import { robot as robot } from './icon';
+import { Node } from './model';
 
-export const toHTML = () => `
+export const toHTML = (root: Node) => `
     <!DOCTYPE html>
     <html lang="en">
         <head>
@@ -41,23 +42,7 @@ export const toHTML = () => `
                         <div class="container-fluid py-1">
                             <div>
                                 <ul>
-                                    <li>products</li>
-                                    <li>
-                                    <ul>
-                                        <li>create-products</li>
-                                            <li>
-                                                <ul>
-                                                    <a href="./products/create-products/products.e2e-spec.html">products.e2e.spec</a>
-                                                </ul>
-                                            </li>
-                                            <li>update-products</li>
-                                            <li>
-                                                <ul>
-                                                    <a href="./products/update-products/update-products-happy-path-spec.html">update-products-happy-path-spec</a>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                    ${root.children.map((node) => contents(node, '.')).join('')}
                                 </ul>
                             </div>
                         </div>
@@ -74,3 +59,20 @@ export const toHTML = () => `
         </body>
     </html>
 `;
+
+const contents = (node: Node, path: string): string => {
+    if (node.children.length) {
+        return `
+            <li>${node.name}</li>
+            <li>
+                <ul>
+                    ${node.children.map((child) => contents(child, [path, node.name].join('/'))).join('')}
+                </ul>
+            </li>
+        `;
+    } else {
+        return `
+            <li><a href="${[path, node.name].join('/') + '.html'}">${node.name}</a></li>
+        `;
+    }
+};

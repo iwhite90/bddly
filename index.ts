@@ -1,7 +1,6 @@
 import * as model from './model';
 import * as structure from './structure';
 import * as suiteTemplate from './suite-template';
-import * as indexTemplate from './index-template';
 import * as fileutils from './file-utils';
 
 const steps: model.Step[] = [];
@@ -78,7 +77,7 @@ export const spec = (name, action) => {
 };
 
 afterAll(() => {
-    writeContentsPage();
+    structure.writeContentsPage(outputDestination);
 });
 
 const resetSpec = () => {
@@ -86,15 +85,4 @@ const resetSpec = () => {
     reports.length = 0;
     interestingGivens.length = 0;
     testFailed = false;
-};
-
-const writeContentsPage = () => {
-    const index = indexTemplate.toHTML();
-    fileutils.writeFile(outputDestination, 'index.html', index);
-    // helper(root);
-};
-
-const helper = (node: model.Node) => {
-    console.log(node.name);
-    node.children.forEach(helper);
 };

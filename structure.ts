@@ -1,4 +1,5 @@
 import * as model from './model';
+import * as indexTemplate from './index-template';
 import * as fileutils from './file-utils';
 
 const workingFile = 'bddly-temp';
@@ -32,6 +33,12 @@ export const getSuiteNameFromTestName = (testName: string): string => {
 
 export const add = (breadcrumb: string[]): void => {
     addToStructure(root, breadcrumb);
+};
+
+export const writeContentsPage = (outputDestination: string) => {
+    const index = indexTemplate.toHTML(root);
+    fileutils.writeFile(outputDestination, 'index.html', index);
+    // helper(root);
 };
 
 const addToStructure = (node: model.Node, breadcrumb: string[]) => {
