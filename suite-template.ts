@@ -93,7 +93,7 @@ const testTemplate = (report: model.SpecInfo, index: number) => {
     `;
 };
 
-export const toHTML = (suite: string, reports: model.SpecInfo[], breadcrumb: string[]) => `
+export const toHTML = (title: string, suite: string, reports: model.SpecInfo[], breadcrumb: string[]) => `
     <!DOCTYPE html>
     <html lang="en">
         <head>
@@ -108,7 +108,7 @@ export const toHTML = (suite: string, reports: model.SpecInfo[], breadcrumb: str
             />
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
 
-            <title>BDD Test Results</title>
+            <title>${title}</title>
         </head>
         <body>
             <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark mb-4">
@@ -116,19 +116,17 @@ export const toHTML = (suite: string, reports: model.SpecInfo[], breadcrumb: str
                 <a class="navbar-brand" href="../../index.html">
                     ${robot()}
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="text-white fs-4">${title}</div>
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="fs-5">Tests</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                        ${reports.map(contentsTemplate).join('')}
-                        </ul>
-                    </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="fs-5">Tests</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                            ${reports.map(contentsTemplate).join('')}
+                            </ul>
+                        </li>
                     </ul>
                     <ol class="breadcrumb">
                         ${breadcrumbTemplate(breadcrumb).join('')}

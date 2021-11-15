@@ -24,6 +24,8 @@ There are then a couple of things to add to your jest config json file.
 ```
 You might need to change the path to the bddly/index.ts file, depending on where your jest config file is.
 
+In your tsconfig.json file, add ```"resolveJsonModule": true``` so that Bddly can read your project name from package.json.
+
 ##### Test file #####
 
 Bddly will look for test files under the bddly-tests folder. Your file name should end with ```-spec.ts``` in order for it to be recognised.

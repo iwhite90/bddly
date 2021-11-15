@@ -2,6 +2,7 @@ import * as model from './model';
 import * as structure from './structure';
 import * as suiteTemplate from './suite-template';
 import * as fileutils from './file-utils';
+import { name } from '../../package.json';
 
 const steps: model.Step[] = [];
 const reports: model.Report[] = [];
@@ -58,7 +59,7 @@ export const suiteFinished = (testPath: string, testName: string, sourcePath: st
     structure.add(breadcrumb);
     structure.save();
 
-    const htmlReport = suiteTemplate.toHTML(suiteName, specInfos, breadcrumb);
+    const htmlReport = suiteTemplate.toHTML(name, suiteName, specInfos, breadcrumb);
     const fileName = breadcrumb.pop() + '.html';
     const targetDir = [outputDestination, breadcrumb.join('/')].join('/');
 
@@ -77,7 +78,7 @@ export const spec = (name, action) => {
 };
 
 afterAll(() => {
-    structure.writeContentsPage(outputDestination);
+    structure.writeContentsPage(name, outputDestination);
 });
 
 const resetSpec = () => {

@@ -35,8 +35,8 @@ export const add = (breadcrumb: string[]): void => {
     addToStructure(root, breadcrumb);
 };
 
-export const writeContentsPage = (outputDestination: string) => {
-    const index = indexTemplate.toHTML(root);
+export const writeContentsPage = (projectName: string, outputDestination: string) => {
+    const index = indexTemplate.toHTML(projectName, root);
     fileutils.writeFile(outputDestination, 'index.html', index);
     // helper(root);
 };

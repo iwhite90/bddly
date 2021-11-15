@@ -1,7 +1,7 @@
 import { robot as robot } from './icon';
 import { Node } from './model';
 
-export const toHTML = (root: Node) => `
+export const toHTML = (title: string, root: Node) => `
     <!DOCTYPE html>
     <html lang="en">
         <head>
@@ -16,30 +16,27 @@ export const toHTML = (root: Node) => `
             />
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
 
-            <title>BDD Test Results</title>
+            <title>${title}</title>
         </head>
         <body>
             <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark mb-4">
                 <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    ${robot()}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    Bddly report
-                </div>
+                    <a class="navbar-brand" href="#">
+                        ${robot()}
+                    </a>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <div class="text-white fs-4">${title}</div>
+                    </div>
                 </div>
             </nav>
             <main>
                 <div class="container py-4">
                     <header class="pb-3 mb-4 border-bottom">
-                        <span class="fs-4">Contents</span>
+                        <span class="fs-3">Test results</span>
                     </header>
 
                     <div class="p-5 mb-4 bg-light rounded-3">
-                        <div class="container-fluid py-1">
+                        <div class="container-fluid py-1 fs-4">
                             <div>
                                 <ul>
                                     ${root.children.map((node) => contents(node, '.')).join('')}
@@ -63,7 +60,7 @@ export const toHTML = (root: Node) => `
 const contents = (node: Node, path: string): string => {
     if (node.children.length) {
         return `
-            <li>${node.name}</li>
+            <li>${prettify(node.name)}</li>
             <li>
                 <ul>
                     ${node.children.map((child) => contents(child, [path, node.name].join('/'))).join('')}
@@ -72,7 +69,12 @@ const contents = (node: Node, path: string): string => {
         `;
     } else {
         return `
-            <li><a href="${[path, node.name].join('/') + '.html'}">${node.name}</a></li>
+            <li><a href="${[path, node.name].join('/') + '.html'}">${prettify(node.name)}</a></li>
         `;
     }
+};
+
+const prettify = (name: string) => {
+    const spacedString = name.split('-').join(' ');
+    return spacedString.charAt(0).toUpperCase() + spacedString.substring(1);
 };
