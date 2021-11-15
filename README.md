@@ -109,7 +109,7 @@ describe('Bddly test:', () => {
     });
 
     afterAll(async () => {
-        suiteFinished(expect.getState().testPath, expect.getState().currentTestName, __filename);
+        suiteFinished(expect.getState().currentTestName, __filename);
     });
 
     describe('Example tests:', () => {

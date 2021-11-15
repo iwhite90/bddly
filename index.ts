@@ -48,13 +48,11 @@ export const specFinished = (testName: string) => {
     resetSpec();
 };
 
-export const suiteFinished = (testPath: string, testName: string, sourcePath: string) => {
+export const suiteFinished = (testName: string, sourcePath: string) => {
     const suiteName = structure.getSuiteNameFromTestName(testName);
     const breadcrumb = structure.getBreadcrumbFromPath(sourcePath);
-    const tsFileName = breadcrumb[breadcrumb.length - 1];
 
-    breadcrumb[breadcrumb.length - 1] = tsFileName.replace('.ts', '');
-    breadcrumb[breadcrumb.length - 1].replace('.ts', '');
+    breadcrumb[breadcrumb.length - 1] = breadcrumb[breadcrumb.length - 1].replace('.ts', '');
 
     structure.add(breadcrumb);
     structure.save();
