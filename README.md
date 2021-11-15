@@ -1,5 +1,11 @@
 <h1>Bddly</h1>
 
+Bddly is a lightweight [Behaviour Driven Development](https://en.wikipedia.org/wiki/Behavior-driven_development) testing wrapper for [Jest](https://jestjs.io/). Unlike other BDD frameworks, such as [Cucumber](https://cucumber.io/), it doesn't require the use of non-code textual spec files. All your tests and specs are written in code, which makes for a more fluid workflow, and lets the compiler help you just like when writing the rest of your code.
+
+Bddly generates nice html files with the output of your tests, which can be the living documentation of the behaviour of your system.
+
+Bddly was inspired by [YatSpec](https://github.com/bodar/yatspec), which is a BDD testing framework for Java.
+
 ### Quick Start ###
 
 ##### Setup #####
