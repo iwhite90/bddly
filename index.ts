@@ -38,6 +38,8 @@ export const suiteStart = () => {
 };
 
 export const specFinished = (testName: string) => {
+    if (!steps.length) return;
+
     specInfos.push({
         testName: testName.split(':').pop(),
         steps: steps.slice(0),

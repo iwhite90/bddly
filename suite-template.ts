@@ -21,7 +21,7 @@ export const toHTML = (title: string, suite: string, reports: model.SpecInfo[], 
         <body>
             <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark mb-4">
                 <div class="container-fluid">
-                <a class="navbar-brand" href="../../index.html">
+                <a class="navbar-brand" href="${linkToIndex(breadcrumb)}">
                     ${robot()}
                 </a>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -102,6 +102,13 @@ const testTemplate = (report: model.SpecInfo, index: number) => {
         </div>
     </div>
     `;
+};
+
+const linkToIndex = (breadcrumb: string[]) => {
+    const [_, ...rest] = breadcrumb;
+    const path = rest.map(() => '..');
+    path.push('index.html');
+    return path.join('/');
 };
 
 const breadcrumbTemplate = (step: string) => {
