@@ -12,11 +12,10 @@ export const writeFile = (dir: string, filename: string, contents: string): void
 };
 
 export const loadStructureFromFile = (file: string): Node => {
-    const data = fs.readFileSync(file);
-
-    if (data) {
+    try {
+        const data = fs.readFileSync(file);
         return JSON.parse(data.toString());
-    } else {
+    } catch (e) {
         return { name: '', children: [] };
     }
 };
