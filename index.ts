@@ -18,8 +18,10 @@ export const Step = (target: any, methodName: string, descriptor: PropertyDescri
     const originalMethod = descriptor.value;
 
     descriptor.value = function (...args) {
-        const param = args[0] ? args[0] : '';
-        steps.push({ stepType: stepType, description: stepDescription, param: param });
+        const rawParam = args[0] ? args[0] : '';
+        const parameter = handleParam(rawParam);
+
+        steps.push({ stepType: stepType, description: stepDescription, param: parameter });
         const result = originalMethod.apply(this, args);
         return result;
     };
@@ -87,3 +89,18 @@ const resetSpec = () => {
     interestingGivens.length = 0;
     testFailed = false;
 };
+
+const handleParam = (param: any): string => {
+    switch (typeof param) {
+        case 'number':
+            return param + '';
+        case 'boolean':
+            return param ? 'true' : 'false';
+        case 'object':
+            return JSON.stringify(param);
+        case 'string':
+            return param;
+        default:
+            return '';
+    }
+}
