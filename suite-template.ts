@@ -124,7 +124,10 @@ const stepTemplate = (step: model.Step) => {
 };
 
 const interestingGivensTemplate = (interestingGiven: model.InterestingGiven) => {
-    return `<p>${interestingGiven.title} : <mark>${interestingGiven.data}</mark></p>`;
+    return `
+        <h4>${interestingGiven.title}</h4>
+        <pre><code>${interestingGiven.data}</code></pre>
+    `;
 };
 
 const testStatusTemplate = (testFailed: boolean) => {
