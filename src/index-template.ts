@@ -58,8 +58,8 @@ export const toHTML = (title: string, root: Node) => `
 `;
 
 const contents = (node: Node, path: string): string => {
-    if (node.children.length) {
-        return `
+  if (node.children.length) {
+    return `
             <li>${prettify(node.name)}</li>
             <li>
                 <ul>
@@ -67,14 +67,14 @@ const contents = (node: Node, path: string): string => {
                 </ul>
             </li>
         `;
-    } else {
-        return `
+  } else {
+    return `
             <li><a href="${[path, node.name].join('/') + '.html'}">${prettify(node.name)}</a></li>
         `;
-    }
+  }
 };
 
 const prettify = (name: string) => {
-    const spacedString = name.split('-').join(' ');
-    return spacedString.charAt(0).toUpperCase() + spacedString.substring(1);
+  const spacedString = name.split('-').join(' ');
+  return spacedString.charAt(0).toUpperCase() + spacedString.substring(1);
 };
