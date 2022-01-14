@@ -1,5 +1,5 @@
 export const robot = () => {
-    return `
+  return `
         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="32px" height="32px"
             viewBox="0 0 496.8 496.8" style="enable-background:new 0 0 496.8 496.8;" xml:space="preserve">
         <path style="fill:#F97906;" d="M456,496.4v-57.6c0-44-35.2-78.4-79.2-78.4H119.2c-44,0-79.2,33.6-79.2,78.4v57.6H456z"/>

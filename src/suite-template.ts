@@ -63,7 +63,7 @@ export const toHTML = (title: string, suite: string, reports: model.SpecInfo[], 
 `;
 
 const testTemplate = (report: model.SpecInfo, index: number) => {
-    return `
+  return `
     <div id="test${index}" class="p-5 mb-4 bg-light rounded-3">
         <div class="container-fluid py-1">
             <div class="row">
@@ -90,13 +90,13 @@ const testTemplate = (report: model.SpecInfo, index: number) => {
             <div class="col-md-6">
                 <div class="h-100 p-4 bg-light border rounded-3">
                     ${report.reportLog
-                        .map((log) =>
-                            reportLogTemplate(
-                                log,
-                                report.interestingGivens.map((ig) => ig.data),
-                            ),
-                        )
-                        .join('')}
+                      .map((log) =>
+                        reportLogTemplate(
+                          log,
+                          report.interestingGivens.map((ig) => ig.data),
+                        ),
+                      )
+                      .join('')}
                 </div>
             </div>
         </div>
@@ -105,47 +105,47 @@ const testTemplate = (report: model.SpecInfo, index: number) => {
 };
 
 const linkToIndex = (breadcrumb: string[]) => {
-    const [_, ...rest] = breadcrumb;
-    const path = rest.map(() => '..');
-    path.push('index.html');
-    return path.join('/');
+  const [_, ...rest] = breadcrumb;
+  const path = rest.map(() => '..');
+  path.push('index.html');
+  return path.join('/');
 };
 
 const breadcrumbTemplate = (step: string) => {
-    return `<li class="breadcrumb-item active text-white" aria-current="page">${step}</li>`;
+  return `<li class="breadcrumb-item active text-white" aria-current="page">${step}</li>`;
 };
 
 const contentsTemplate = (report: model.SpecInfo, index: number) => {
-    return `<li><a class="dropdown-item" href="#test${index}">${report.testName}</a></li>`;
+  return `<li><a class="dropdown-item" href="#test${index}">${report.testName}</a></li>`;
 };
 
 const stepTemplate = (step: model.Step) => {
-    return `<p class="col-md-8 fs-5"><strong>${step.stepType}</strong> ${step.description} <em>${step.param}</em></p>`;
+  return `<p class="col-md-8 fs-5"><strong>${step.stepType}</strong> ${step.description} <em>${step.param}</em></p>`;
 };
 
 const interestingGivensTemplate = (interestingGiven: model.InterestingGiven) => {
-    return `
+  return `
         <h4>${interestingGiven.title}</h4>
         <pre><code>${interestingGiven.data}</code></pre>
     `;
 };
 
 const testStatusTemplate = (testFailed: boolean) => {
-    const status = testFailed ? 'Test failed' : 'Test passed';
-    const bg = testFailed ? 'bg-danger' : 'bg-success';
-    return `<div class="p-2 ${bg} text-white text-center fs-5 rounded-3">${status}</div>`;
+  const status = testFailed ? 'Test failed' : 'Test passed';
+  const bg = testFailed ? 'bg-danger' : 'bg-success';
+  return `<div class="p-2 ${bg} text-white text-center fs-5 rounded-3">${status}</div>`;
 };
 
 const reportLogTemplate = (reportLog: model.Report, markValues: string[]) => {
-    return `
+  return `
         <h2 class="mb-3">${reportLog.title}</h2>
         <pre><code>${markText(reportLog.data, markValues)}</code></pre>
     `;
 };
 
 const markText = (text: string, markValues: string[]) => {
-    markValues.forEach((markValue) => {
-        text = text.split(markValue).join(`<mark>${markValue}</mark>`);
-    });
-    return text;
+  markValues.forEach((markValue) => {
+    text = text.split(markValue).join(`<mark>${markValue}</mark>`);
+  });
+  return text;
 };
