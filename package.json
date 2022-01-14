@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "types": "lib.index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"No test specified\"",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
@@ -19,7 +19,11 @@
     "type": "git",
     "url": "git+https://github.com/iwhite90/bddly.git"
   },
-  "keywords": ["BDD", "Behaviour", "Testing"],
+  "keywords": [
+    "BDD",
+    "Behaviour",
+    "Testing"
+  ],
   "author": "Ian White",
   "license": "MIT",
   "bugs": {
@@ -35,5 +39,7 @@
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^4.5.4"
   },
-  "files": ["lib/**/*"]
+  "files": [
+    "lib/**/*"
+  ]
 }

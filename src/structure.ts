@@ -3,7 +3,7 @@ import * as indexTemplate from './index-template';
 import * as fileutils from './file-utils';
 
 const workingFile = 'bddly-temp';
-const rootName = 'bddly-tests';
+const rootName = 'bddly';
 
 let root: model.Node = {
   name: rootName,
