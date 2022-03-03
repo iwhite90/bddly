@@ -1,13 +1,13 @@
 {
   "name": "bddly",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A nice Behaviour Driven Development testing framework for Jest",
   "main": "lib/index.js",
-  "types": "lib.index.d.ts",
+  "types": "lib/index.d.ts",
   "scripts": {
     "test": "echo \"No test specified\"",
     "build": "tsc",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",

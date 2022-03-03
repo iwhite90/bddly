@@ -7,7 +7,7 @@ const steps: model.Step[] = [];
 const reports: model.Report[] = [];
 const interestingGivens: model.InterestingGiven[] = [];
 const specInfos: model.SpecInfo[] = [];
-const outputDestination = './bdd-reports';
+const outputDestination = './reports/bddly';
 
 let testFailed: boolean;
 let appName: string = 'Bddly reports';
@@ -28,7 +28,7 @@ export const Step = (target: any, methodName: string, descriptor: PropertyDescri
 };
 
 export const interestingGiven = (title: string, data: any) => {
-  interestingGivens.push({ title, data });
+  interestingGivens.push({ title, data: handleParam(data) });
 };
 
 export const report = (title: string, data: string) => {
@@ -98,7 +98,7 @@ const handleParam = (param: any): string => {
     case 'boolean':
       return param ? 'true' : 'false';
     case 'object':
-      return JSON.stringify(param);
+      return JSON.stringify(param, null, 4);
     case 'string':
       return param;
     default:
