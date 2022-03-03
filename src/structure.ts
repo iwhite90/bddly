@@ -1,3 +1,4 @@
+import * as path from 'path';
 import * as model from './model';
 import * as indexTemplate from './index-template';
 import * as fileutils from './file-utils';
@@ -19,8 +20,8 @@ export const save = (): void => {
   fileutils.writeFile('./', workingFile, JSON.stringify(root));
 };
 
-export const getBreadcrumbFromPath = (path: string): string[] => {
-  const pathTokens = path.split('/');
+export const getBreadcrumbFromPath = (filePath: string): string[] => {
+  const pathTokens = filePath.split(path.sep);
   const tailIndex = pathTokens.indexOf(rootName) + 1;
   return pathTokens.splice(tailIndex);
 };

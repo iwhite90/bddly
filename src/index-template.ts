@@ -45,7 +45,7 @@ export const toHTML = (title: string, root: Node) => `
                         </div>
                     </div>
 
-                    <footer class="pt-3 mt-4 text-muted border-top">&copy; 2021</footer>
+                    <footer class="pt-3 mt-4 text-muted border-top">&copy; ${new Date().getFullYear()}</footer>
                 </div>
             </main>
             <script
