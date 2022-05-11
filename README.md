@@ -4,7 +4,7 @@ Bddly is a lightweight [Behaviour Driven Development](https://en.wikipedia.org/w
 
 Bddly generates nice html files with the output of your tests, which can be the living documentation of the behaviour of your system.
 
-![Example output](https://github.com/iwhite90/bddly/example_output.png)
+![Example output](https://github.com/iwhite90/bddly/blob/main/example_output.png)
 
 Bddly was inspired by [YatSpec](https://github.com/bodar/yatspec), which is a BDD testing framework for Java.
 
