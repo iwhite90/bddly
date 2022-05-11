@@ -6,6 +6,17 @@ Bddly generates nice html files with the output of your tests, which can be the 
 
 ![Example output](https://github.com/iwhite90/bddly/blob/main/example_output.png)
 
+The code that generated this test output is pretty readable, and all in TypeScript:
+
+```
+spec('Order retrieval', async () => {
+    given.anOrderExistsInTheDatabaseWithName('My order');
+    await when.aRequestIsMadeForOrderByIndex(state.orderIndex);
+    then.theResponseTextIs('My order');
+    and.theResponseCodeIs(200);
+});
+```
+
 Bddly was inspired by [YatSpec](https://github.com/bodar/yatspec), which is a BDD testing framework for Java.
 
 Bddly is written in TypeScript, and is designed to work with TypeScript projects. Vanilla JavaScript projects may need some fiddling to get this to work!
