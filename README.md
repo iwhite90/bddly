@@ -4,27 +4,23 @@ Bddly is a lightweight [Behaviour Driven Development](https://en.wikipedia.org/w
 
 Bddly generates nice html files with the output of your tests, which can be the living documentation of the behaviour of your system.
 
+![Example output](https://github.com/iwhite90/bddly/example_output.png)
+
 Bddly was inspired by [YatSpec](https://github.com/bodar/yatspec), which is a BDD testing framework for Java.
+
+Bddly is written in TypeScript, and is designed to work with TypeScript projects. Vanilla JavaScript projects may need some fiddling to get this to work!
 
 ### Quick Start ###
 
 ##### Setup #####
 
-Copy the bddly folder to the top level of your node project.
-
-In your test folder, create a folder called bddly-tests. This is where yo'll write your BDD tests. You can add a hierarchy of folders within the bddly-tests folder, and this structure will be reflected in the Bddly reports. You might like a folder structure based on your controllers, and then split into happy and sad path tests, for instance.
-
-There are then a couple of things to add to your jest config json file.
-
+```bash
+npm i bddly --save-dev
 ```
-"testRegex": ".-spec.ts$",
-"setupFilesAfterEnv": [
-    "./bddly/index.ts"
-]
-```
-You might need to change the path to the bddly/index.ts file, depending on where your jest config file is.
 
 In your tsconfig.json file, add ```"resolveJsonModule": true``` so that Bddly can read your project name from package.json.
+
+There is an example Nest.js project using Bddly that you might find instructive [here](https://github.com/iwhite90/nest-bddly-example). It has a slightly cleaner structure than the following example.
 
 ##### Test file #####
 
