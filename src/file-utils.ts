@@ -4,11 +4,7 @@ import { Node } from './model';
 export const writeFile = (dir: string, filename: string, contents: string): void => {
   mkDirIfNotExists(dir);
 
-  fs.writeFile([dir, filename].join('/'), contents, (err) => {
-    if (err) {
-      return console.error(err);
-    }
-  });
+  fs.writeFileSync([dir, filename].join('/'), contents);
 };
 
 export const loadStructureFromFile = (file: string): Node => {
