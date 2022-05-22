@@ -69,12 +69,27 @@ export const suiteFinished = (testName: string, sourcePath: string) => {
   fileutils.writeFile(targetDir, fileName, htmlReport);
 };
 
+type JestAssertionError = {
+  matcherResult: {
+    actual: string;
+    expected: string;
+  }
+}
+
 export const spec = (name: string, action: () => Promise<void>) => {
   test(name, async () => {
     try {
       await action();
     } catch (error) {
       testFailed = true;
+      if (error as JestAssertionError) {
+        const errorReport = {
+          expected: (error as JestAssertionError).matcherResult.expected,
+          actual: (error as JestAssertionError).matcherResult.actual,
+        }
+        report('Test error', JSON.stringify(errorReport, null, 2));
+      }
+
       throw error;
     }
   });
