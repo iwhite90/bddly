@@ -73,8 +73,8 @@ type JestAssertionError = {
   matcherResult: {
     actual: string;
     expected: string;
-  }
-}
+  };
+};
 
 export const spec = (name: string, action: () => Promise<void>) => {
   test(name, async () => {
@@ -86,7 +86,7 @@ export const spec = (name: string, action: () => Promise<void>) => {
         const errorReport = {
           expected: (error as JestAssertionError).matcherResult.expected,
           actual: (error as JestAssertionError).matcherResult.actual,
-        }
+        };
         report('Test error', JSON.stringify(errorReport, null, 2));
       }
 
