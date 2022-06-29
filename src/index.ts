@@ -82,7 +82,7 @@ export const spec = (name: string, action: () => Promise<void>) => {
       await action();
     } catch (error) {
       testFailed = true;
-      if (error as JestAssertionError) {
+      if (error as JestAssertionError && (error as JestAssertionError).matcherResult) {
         const errorReport = {
           expected: (error as JestAssertionError).matcherResult.expected,
           actual: (error as JestAssertionError).matcherResult.actual,
