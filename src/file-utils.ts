@@ -32,9 +32,9 @@ export const buildTree = (): Node => {
     if (currentNode) {
       const children = fs.readdirSync(currentNode.path);
 
-      for (let child of children) {
+      for (const child of children) {
         if (child === 'index.html') continue;
-        
+
         const childPath = `${currentNode.path}/${child}`;
         const childNode = {
           path: childPath,
