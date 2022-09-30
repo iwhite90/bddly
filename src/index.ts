@@ -37,7 +37,6 @@ export const report = (title: string, data: string) => {
 
 export const suiteStart = (name: string): void => {
   appName = name;
-  structure.load();
 };
 
 export const specFinished = (testName: string) => {
@@ -58,9 +57,6 @@ export const suiteFinished = (testName: string, sourcePath: string) => {
   const breadcrumb = structure.getBreadcrumbFromPath(sourcePath);
 
   breadcrumb[breadcrumb.length - 1] = breadcrumb[breadcrumb.length - 1].replace('.ts', '');
-
-  structure.add(breadcrumb);
-  structure.save();
 
   const htmlReport = suiteTemplate.toHTML(appName, suiteName, specInfos, breadcrumb);
   const fileName = breadcrumb.pop() + '.html';
