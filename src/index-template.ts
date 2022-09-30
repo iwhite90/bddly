@@ -60,21 +60,24 @@ export const toHTML = (title: string, root: Node) => `
 const contents = (node: Node, path: string): string => {
   if (node.children.length) {
     return `
-            <li>${prettify(node.name)}</li>
-            <li>
-                <ul>
+        <br/>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">${prettify(node.name)}</h5>
+                <ul class="list-group">
                     ${node.children.map((child) => contents(child, [path, node.name].join('/'))).join('')}
                 </ul>
-            </li>
+            </div>
+        </div>
         `;
   } else {
     return `
-            <li><a href="${[path, node.name].join('/') + '.html'}">${prettify(node.name)}</a></li>
-        `;
+        <a href="${[path, node.name].join('/')}" class="list-group-item list-group-item-action list-group-item-light">${prettify(node.name)}</a>
+    `;
   }
 };
 
 const prettify = (name: string) => {
-  const spacedString = name.split('-').join(' ');
+  const spacedString = name.replace(/\..*\.html/, '').split('-').join(' ');
   return spacedString.charAt(0).toUpperCase() + spacedString.substring(1);
 };

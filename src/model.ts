@@ -24,5 +24,6 @@ export interface SpecInfo {
 
 export interface Node {
   name: string;
+  path: string;
   children: Node[];
 }

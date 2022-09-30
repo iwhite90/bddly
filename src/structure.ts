@@ -3,22 +3,7 @@ import * as model from './model';
 import * as indexTemplate from './index-template';
 import * as fileutils from './file-utils';
 
-const workingFile = 'bddly-temp';
 const rootName = 'bddly';
-
-let root: model.Node = {
-  name: rootName,
-  children: [],
-};
-
-export const load = (): void => {
-  const data = fileutils.loadStructureFromFile(['./', workingFile].join(''));
-  if (data.name === root.name) root = data;
-};
-
-export const save = (): void => {
-  fileutils.writeFile('./', workingFile, JSON.stringify(root));
-};
 
 export const getBreadcrumbFromPath = (filePath: string): string[] => {
   const pathTokens = filePath.split(path.sep);
@@ -32,26 +17,7 @@ export const getSuiteNameFromTestName = (testName: string): string => {
   return suiteNameTokens.join(':');
 };
 
-export const add = (breadcrumb: string[]): void => {
-  addToStructure(root, breadcrumb);
-};
-
 export const writeContentsPage = (projectName: string, outputDestination: string) => {
-  const index = indexTemplate.toHTML(projectName, root);
+  const index = indexTemplate.toHTML(projectName, fileutils.buildTree());
   fileutils.writeFile(outputDestination, 'index.html', index);
-};
-
-const addToStructure = (node: model.Node, breadcrumb: string[]) => {
-  if (breadcrumb.length === 0) return;
-
-  const [_, ...rest] = breadcrumb;
-  const existingNode = node.children.filter((n) => n.name === breadcrumb[0])[0];
-
-  if (existingNode) {
-    addToStructure(existingNode, rest);
-  } else {
-    const newNode = { name: breadcrumb[0], children: [] };
-    node.children.push(newNode);
-    addToStructure(newNode, rest);
-  }
 };
