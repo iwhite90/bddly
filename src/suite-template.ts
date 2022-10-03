@@ -80,19 +80,7 @@ const testTemplate = (report: model.SpecInfo, index: number) => {
                 ${report.steps.map(stepTemplate).join('')}
             </div>
         </div>
-        <div class="row align-items-md-stretch">
-            <div class="col-md-6">
-                <div class="h-100 p-4 text-white bg-dark rounded-3">
-                    <h2 class="mb-3">Interesting Givens</h2>
-                    ${report.interestingGivens.map(interestingGivensTemplate).join('')}
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="h-100 p-4 bg-light border rounded-3">
-                    ${report.reportLog.map(reportLogTemplate).join('')}
-                </div>
-            </div>
-        </div>
+        ${additionalInfo(report)}
     </div>
     `;
 };
@@ -134,4 +122,26 @@ const reportLogTemplate = (reportLog: model.Report) => {
         <h2 class="mb-3">${reportLog.title}</h2>
         <pre><code>${reportLog.data}</code></pre>
     `;
+};
+
+const additionalInfo = (report: model.SpecInfo) => {
+  if (report.interestingGivens[0] || report.reportLog[0]) {
+    return `
+          <div class="row align-items-md-stretch">
+              <div class="col-md-6">
+                  <div class="h-100 p-4 text-white bg-dark rounded-3">
+                      <h2 class="mb-3">Interesting Givens</h2>
+                      ${report.interestingGivens.map(interestingGivensTemplate).join('')}
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="h-100 p-4 bg-light border rounded-3">
+                      ${report.reportLog.map(reportLogTemplate).join('')}
+                  </div>
+              </div>
+          </div>
+    `;
+  } else {
+    return '';
+  }
 };
