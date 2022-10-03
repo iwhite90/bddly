@@ -89,14 +89,7 @@ const testTemplate = (report: model.SpecInfo, index: number) => {
             </div>
             <div class="col-md-6">
                 <div class="h-100 p-4 bg-light border rounded-3">
-                    ${report.reportLog
-                      .map((log) =>
-                        reportLogTemplate(
-                          log,
-                          report.interestingGivens.map((ig) => ig.data),
-                        ),
-                      )
-                      .join('')}
+                    ${report.reportLog.map(reportLogTemplate).join('')}
                 </div>
             </div>
         </div>
@@ -136,16 +129,9 @@ const testStatusTemplate = (testFailed: boolean) => {
   return `<div class="p-2 ${bg} text-white text-center fs-5 rounded-3">${status}</div>`;
 };
 
-const reportLogTemplate = (reportLog: model.Report, markValues: string[]) => {
+const reportLogTemplate = (reportLog: model.Report) => {
   return `
         <h2 class="mb-3">${reportLog.title}</h2>
-        <pre><code>${markText(reportLog.data, markValues)}</code></pre>
+        <pre><code>${reportLog.data}</code></pre>
     `;
-};
-
-const markText = (text: string, markValues: string[]) => {
-  markValues.forEach((markValue) => {
-    text = text.split(markValue).join(`<mark>${markValue}</mark>`);
-  });
-  return text;
 };

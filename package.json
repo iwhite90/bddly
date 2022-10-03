@@ -1,6 +1,6 @@
 {
   "name": "bddly",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A nice Behaviour Driven Development testing framework for Jest",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
