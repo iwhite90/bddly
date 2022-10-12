@@ -106,8 +106,8 @@ const stepTemplate = (step: model.Step) => {
 
 const interestingGivensTemplate = (interestingGiven: model.InterestingGiven) => {
   return `
-        <h4>${interestingGiven.title}</h4>
-        <pre><code>${interestingGiven.data}</code></pre>
+        <h4>${encode(interestingGiven.title)}</h4>
+        <pre><code>${encode(interestingGiven.data)}</code></pre>
     `;
 };
 
@@ -119,8 +119,8 @@ const testStatusTemplate = (testFailed: boolean) => {
 
 const reportLogTemplate = (reportLog: model.Report) => {
   return `
-        <h2 class="mb-3">${reportLog.title}</h2>
-        <pre><code>${reportLog.data}</code></pre>
+        <h2 class="mb-3">${encode(reportLog.title)}</h2>
+        <pre><code>${encode(reportLog.data)}</code></pre>
     `;
 };
 
@@ -145,3 +145,5 @@ const additionalInfo = (report: model.SpecInfo) => {
     return '';
   }
 };
+
+const encode = (input: string) => input.replaceAll('<', '&lt;');

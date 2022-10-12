@@ -109,9 +109,9 @@ const handleParam = (param: any): string => {
     case 'boolean':
       return param ? 'true' : 'false';
     case 'object':
-      return JSON.stringify(param, null, 4);
+      return encodeURIComponent(JSON.stringify(param, null, 4));
     case 'string':
-      return param;
+      return encodeURI(param);
     default:
       return '';
   }
